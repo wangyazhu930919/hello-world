@@ -1,0 +1,23 @@
+#include<STC12C5A.H>
+#define uchar unsigned char
+#define uint unsigned int
+#define limit 100
+sbit LED=P0^4;
+void delay(uint ms)
+{
+    uint i=0,j=0;
+    for(i=ms;i>0;i--)
+      for(j=123;j>0;j--);
+}
+
+void main()
+{
+    uint t=50;
+    char d=1;
+    while(t+=d)
+    {
+        LED=t%2;
+        delay(t*(LED==1)+(limit-t)*(LED==0));//这条代码很巧妙的实现了两个状态的切换
+        if(t>=95||t<=5) d=-d;
+    }
+}
